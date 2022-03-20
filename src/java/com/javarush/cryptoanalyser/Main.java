@@ -1,4 +1,4 @@
-package com.javarush.sryptoanalyser;
+package com.javarush.cryptoanalyser;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;

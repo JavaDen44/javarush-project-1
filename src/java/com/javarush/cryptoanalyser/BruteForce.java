@@ -1,4 +1,4 @@
-package com.javarush.sryptoanalyser;
+package com.javarush.cryptoanalyser;
 
 import java.io.BufferedReader;
 import java.io.IOException;
