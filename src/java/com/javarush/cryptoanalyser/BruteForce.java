@@ -21,6 +21,13 @@ public class BruteForce {
             " за ", " к ", " на ", " над ", " об ", " от ", " перед ", " под ", " при ", " с ", " у ", " через ", ". ",
             ", ", "? ", ": ", "; ", "! ", "-", ") ", " (", " ");
 
+    private static final int NUMBER_SMALL_SIZE = 0;
+    private static final int NUMBER_MEDIUM_SIZE = 4;
+    private static final int NUMBER_LARGE_SIZE = 8;
+    private static final String SMALL_TEXT = "small";
+    private static final String MEDIUM_TEXT = "medium";
+    private static final String LARGE_TEXT = "large";
+
     private static String decryption(String encryptText, int decryptKey){
         char[] decryptCharBefore = encryptText.toCharArray();
         char[] decryptCharAfter = new char[decryptCharBefore.length];
@@ -59,26 +66,24 @@ public class BruteForce {
             System.out.println("Введите путь файла для взлома текста:");
             byte[] buffer = Files.readAllBytes(Path.of(reader.readLine()));
             String encryptText = new String(buffer, StandardCharsets.UTF_8);
-            System.out.println("""
-                    Введите размер зашифрованного текста
-                    (маленький текст - введите "small"
-                    средний текст - введите "medium"
-                    большой текст - введите "large"):""");
+            System.out.println("Введите размер зашифрованного текста\n" +
+                    "(маленький текст - введите " + SMALL_TEXT + "\n" +
+                    "средний текст - введите " + MEDIUM_TEXT + "\n" +
+                    "большой текст - введите " + LARGE_TEXT + "):");
 
             String sizeText = reader.readLine();
-            int sizeNumber = 0;
-
+            int sizeNumber = NUMBER_SMALL_SIZE;
             switch (sizeText) {
-                case "small":
+                case SMALL_TEXT:
                     break;
-                case "medium":
-                    sizeNumber = 4;
+                case MEDIUM_TEXT:
+                    sizeNumber = NUMBER_MEDIUM_SIZE;
                     break;
-                case "large":
-                    sizeNumber = 8;
+                case LARGE_TEXT:
+                    sizeNumber = NUMBER_LARGE_SIZE;
                     break;
                 default:
-                    System.out.println("Неправильно введён размер (по умолчанию выбран размер \"small\").");
+                    System.out.println("Неправильно введён размер (по умолчанию выбран размер " + SMALL_TEXT + ")");
                     break;
             }
 
@@ -88,9 +93,8 @@ public class BruteForce {
             List<String> forceText = new ArrayList<>();
             for (int i = 0; i < ALPHABET_FULL_SIZE; i++) {
                 listVariants.add(decryption(encryptText,i));
-                boolean endText = (((listVariants.get(i).charAt(listVariants.get(i).length()-1)) == '!')
-                        || ((listVariants.get(i).charAt(listVariants.get(i).length()-1)) == '?')
-                        || ((listVariants.get(i).charAt(listVariants.get(i).length()-1)) == '.'));
+                char variantCharacter = listVariants.get(i).charAt(listVariants.get(i).length()-1);
+                boolean endText = (variantCharacter == '!') || (variantCharacter == '?') || (variantCharacter == '.');
 
                 if ((getKeyCharactersCount(listVariants.get(i)) > sizeNumber) && (endText)){
                     forceText.add(listVariants.get(i));
