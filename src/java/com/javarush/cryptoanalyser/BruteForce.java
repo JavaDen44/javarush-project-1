@@ -7,19 +7,11 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-public class BruteForce {
-    private static final char[] ALPHABET_FULL = {'А', 'а', 'Б', 'б', 'В', 'в', 'Г', 'г', 'Д', 'д', 'Е', 'е',
-            'Ё', 'ё', 'Ж', 'ж', 'З', 'з', 'И', 'и', 'Й', 'й', 'К', 'к', 'Л', 'л', 'М', 'м', 'Н', 'н', 'О', 'о',
-            'П', 'п', 'Р', 'р', 'С', 'с', 'Т', 'т', 'У', 'у', 'Ф', 'ф', 'Х', 'х', 'Ц', 'ц', 'Ч', 'ч', 'Ш', 'ш', 'Щ', 'щ',
-            'Ъ', 'ъ', 'Ы', 'ы', 'Ь', 'ь', 'Э', 'э', 'Ю', 'ю', 'Я', 'я', '.', ',', '«', '»', '"', '\'', ':', '!', '?', ' '};
-    private static final int ALPHABET_FULL_SIZE = ALPHABET_FULL.length;
+import static com.javarush.cryptoanalyser.CharacterData.*;
 
-    private static final List<String> KEY_CHARACTERS = Arrays.asList(" без ", " в " , " до " , " для ", " за " , " из ",
-            " за ", " к ", " на ", " над ", " об ", " от ", " перед ", " под ", " при ", " с ", " у ", " через ", ". ",
-            ", ", "? ", ": ", "; ", "! ", "-", ") ", " (", " ");
+public class BruteForce {
 
     private static final int NUMBER_SMALL_SIZE = 0;
     private static final int NUMBER_MEDIUM_SIZE = 4;
@@ -104,8 +96,6 @@ public class BruteForce {
 
         } catch (IOException e) {
             System.out.println("The file does not exist " + e.getMessage());
-        } catch (NullPointerException e) {
-            System.out.println("No text " + e.getMessage());
         }
     }
 }

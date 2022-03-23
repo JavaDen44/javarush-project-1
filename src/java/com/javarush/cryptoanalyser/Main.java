@@ -5,12 +5,10 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
+import static com.javarush.cryptoanalyser.CharacterData.ALPHABET_FULL;
+import static com.javarush.cryptoanalyser.CharacterData.ALPHABET_FULL_SIZE;
+
 public class Main {
-    private static final char[] ALPHABET_FULL = {'А', 'а', 'Б', 'б', 'В', 'в', 'Г', 'г', 'Д', 'д', 'Е', 'е',
-            'Ё', 'ё', 'Ж', 'ж', 'З', 'з', 'И', 'и', 'Й', 'й', 'К', 'к', 'Л', 'л', 'М', 'м', 'Н', 'н', 'О', 'о',
-            'П', 'п', 'Р', 'р', 'С', 'с', 'Т', 'т', 'У', 'у', 'Ф', 'ф', 'Х', 'х', 'Ц', 'ц', 'Ч', 'ч', 'Ш', 'ш', 'Щ', 'щ',
-            'Ъ', 'ъ', 'Ы', 'ы', 'Ь', 'ь', 'Э', 'э', 'Ю', 'ю', 'Я', 'я', '.', ',', '«', '»', '"', '\'', ':', '!', '?', ' '};
-    private static final int ALPHABET_FULL_SIZE = ALPHABET_FULL.length;
 
     private static String encryption(String encryptTextBefore, int encryptKey){
         char[] encryptCharBefore = encryptTextBefore.toCharArray();
@@ -76,8 +74,6 @@ public class Main {
 
         } catch (IOException e) {
             System.out.println("The file does not exist " + e.getMessage());
-        } catch (NullPointerException e) {
-            System.out.println("No text " + e.getMessage());
         }
     }
 }
